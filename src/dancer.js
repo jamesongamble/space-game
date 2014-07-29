@@ -1,6 +1,6 @@
 var Dancer = function(top, left, timeBetweenSteps){
   this.timeBetweenSteps = timeBetweenSteps;
-  this.$node = $('<span class="dancer"></span>');
+  this.$node = $('<img class="dancer" src="src/star.png"></img>');
   this.step();
   this.setPosition(top, left);
 };

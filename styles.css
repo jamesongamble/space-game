@@ -3,7 +3,7 @@ body, html{
 }
 body{
   margin: 0px;
-  background-image: url('space-lols.jpg');
+  background-image: url('src/space-lols.jpg');
   font-size: 18px;
 }
 body, a:link, a:visited, a:active{
@@ -21,16 +21,15 @@ body, a:link, a:visited, a:active{
   background-color: #777;
 }
 .dancer{
-  border:10px solid red;
-  border-radius:10px;
+  width: 25px;
   position:absolute;
 }
 .bouncy_dancer{
-  border:10px solid blue;
+  width: 50px;
   border-radius:10px;
   position:absolute;
 }
-.leaping_dancer{
+.disco_dancer{
   border:10px solid green;
   border-radius:10px;
   position:absolute;

@@ -1,6 +1,14 @@
 $(document).ready(function(){
   window.dancers = [];
-  
+
+  $(".lineUpButton").on("click", function(event) {
+    var els = $('img');
+    for (var i = 0; i < els.length; i++) {
+      var randomY = Math.random() * $("body").height() * .5;
+      els[i].css({top: randomY, left: 0});
+    }
+  });
+
   $(".addDancerButton").on("click", function(event){
     /* This function sets up the click handlers for the create-dancer
      * buttons on index.html. You should only need to make one small change to it.
@@ -30,15 +38,7 @@ $(document).ready(function(){
     $('body').append(dancer.$node);
   });
 
-  $('.leaping_dancer').on("mouseover", function(event) {
-    // var randomX = $("body").width() * Math.random();
-    // var randomY = $("body").height() * .75 * Math.random();
-    this.$node.fadeOut();
-    // this.$node.animate({
-    //   left: randomX,
-    //   top: randomY
-    // });
-  });
+
 
 });
 
