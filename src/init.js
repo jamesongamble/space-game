@@ -2,11 +2,10 @@ $(document).ready(function(){
   window.dancers = [];
 
   $(".lineUpButton").on("click", function(event) {
-    var els = $('img');
-    for (var i = 0; i < els.length; i++) {
-      var randomY = Math.random() * $("body").height() * .5;
-      els[i].css({top: randomY, left: 0});
-    }
+    $("img").each(function() {
+      var y = Math.random() * $("body").height();
+      $(this).css({top: y, left: 0});
+    });
   });
 
   $(".addDancerButton").on("click", function(event){
@@ -35,6 +34,7 @@ $(document).ready(function(){
       $("body").width() * Math.random(),
       Math.random() * 1000
     );
+    window.dancers.push(dancer);
     $('body').append(dancer.$node);
   });
 

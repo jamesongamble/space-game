@@ -8,7 +8,7 @@ BouncyDancer.prototype.constructor = BouncyDancer;
 BouncyDancer.prototype.step = function(){
   Dancer.prototype.step.call(this);
   var x = Math.random() * $("body").width();
-  var y = Math.random() * $("body").height()*.75;
+  var y = Math.random() * $("body").height();
   this.$node.animate({
     top: y,
     left: x  
