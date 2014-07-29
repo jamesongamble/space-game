@@ -29,8 +29,7 @@ body, a:link, a:visited, a:active{
   border-radius:10px;
   position:absolute;
 }
-.disco_dancer{
-  border:10px solid green;
-  border-radius:10px;
+.meteor{
+  width: 60px;
   position:absolute;
 }
