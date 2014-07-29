@@ -1,13 +1,18 @@
 body, html{
-  height:100%;
+  height: 90%;
+  width: 100%;
 }
 body{
   margin: 0px;
-  background-image: url('src/space-lols.jpg');
+  background: url('src/space-lols.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   font-size: 18px;
 }
 body, a:link, a:visited, a:active{
-  color: lightblue;
+  color: lightBlue;
 }
 .title, .addDancerButton{
   padding:5px 12px;
@@ -20,16 +25,16 @@ body, a:link, a:visited, a:active{
 .title{
   background-color: #777;
 }
-.dancer{
+.missile{
   width: 25px;
   position:absolute;
 }
 .spaceship{
-  width: 75px;
+  width: 50px;
   border-radius:10px;
   position:absolute;
 }
 .meteor{
-  width: 60px;
+  width: 30px;
   position:absolute;
 }

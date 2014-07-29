@@ -1,5 +1,5 @@
 var FallingRock = function(top, left, timeBetweenSteps){
-  Dancer.call(this, 0, left, 1);
+  Dancer.call(this, 0, left, 50);
   this.$node.attr('class', 'meteor');
   this.$node.attr('src', 'src/meteor.png');
 };
@@ -8,11 +8,8 @@ FallingRock.prototype.constructor = FallingRock;
 
 FallingRock.prototype.step = function(){
   Dancer.prototype.step.call(this);
-  this.$node.animate({top: '100%'}, 3000, "swing", function() {
-    $(this).remove();
-  });
-  this.$node.on("mouseenter", function(event) {
-    alert('YOU DIED!');
-    location.reload();
-  });
+  if (this.$node.position().top >= $('body').height() * .8) {
+    this.$node.remove();
+  }
+  this.$node.css({top: this.$node.position().top + 10});
 };

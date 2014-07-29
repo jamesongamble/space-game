@@ -11,17 +11,34 @@ $(document).ready(function(){
   $("#go").on("click", function(event) {
     setTimeout(function() {
       $("#go").trigger("click");
-    }, 300);
+    }, 100);
   });
 
-  $("#no").on("click", function(event) {
-    setTimeout(function() {
-      $("#no").trigger("click");
-    }, 3000);
-  });
-
-  $("go").on("runIt", function(event) {
-
+  $("body").keydown(function(e) {
+    var offset = 100;
+    if (e.keyCode === '39') {
+      var pos = $(".spaceship").position();
+      if (pos.left + offset <= $('body').width()) {
+        $(".spaceship").animate({left: pos.left + offset}, 50, "linear");
+      }
+    } else if (e.keyCode === '37') {
+      var pos = $(".spaceship").position();
+      if (pos.left + offset > 0) {
+        $(".spaceship").animate({left: pos.left - offset}, 50, "linear");
+      }
+    } else if (e.keyCode === '32') {
+      var posX = $(".spaceship").position().left + 25;
+      var posY = $(".spaceship").position().top;
+      var missile = new Star(posY, posX, 1);
+      setInterval(function() {
+        var breakable = $(".spaceship").collision( ".meteor" );
+        if (breakable.attr('class') === 'meteor') {
+          $('.missile').attr('src', 'src/boom.svg').fadeOut(200, function() {
+            $(this).remove();
+          });
+        } 
+      }, 1);
+    }
   });
 
   $(".addDancerButton").on("click", function(event){
@@ -36,9 +53,22 @@ $(document).ready(function(){
     );
     $('body').append(dancer.$node);
 
+    if(dancerMakerFunctionName === "SpaceShip") {
+      setInterval(function() {
+        var breakable = $(".spaceship").collision( ".meteor" );
+        if (breakable.attr('class') === 'meteor') {
+          $('.spaceship').attr('src', 'src/boom.svg').fadeOut(200, function() {
+            $(this).remove();
+          });
+          location.reload();
+        } 
+      }, 1);
+    }
+
   });
 
-
+  $('#no').click();
+  //$('#go').click();
 
 });
 

@@ -4,6 +4,11 @@
     <title>Object Dance Party</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <script src="lib/jquery.js"></script>
+    <script src="lib/ui/jquery.ui.core.js"></script>
+    <script src="lib/ui/jquery.ui.widget.js"></script>
+    <script src="lib/ui/jquery.ui.mouse.js"></script>
+    <script src="lib/ui/jquery.ui.draggable.js"></script>
+    <script src="lib/jquery-collision.min.js"></script>
     <script src="src/dancer.js"></script>
     <script src="src/star.js"></script>
     <script src="src/spaceShip.js"></script>
@@ -14,8 +19,8 @@
       <button class="lineUpButton">LINE EM UP!</button>
       <span class="title">object dance party</span>
       <a href="#" class="addDancerButton" data-dancer-maker-function-name="Star">add a shining star</a>
-      <a href="#" id="no" class="addDancerButton" data-dancer-maker-function-name="SpaceShip">add a spaceship!!!</a>
-      <a href="#" id="go" class="addDancerButton" data-dancer-maker-function-name="FallingRock">Start the Meteors!</a>
+      <a href="#" id="no" style="visibility: hidden;" class="addDancerButton" data-dancer-maker-function-name="SpaceShip">add a spaceship!!!</a>
+      <a href="#" id="go" style="visibility: hidden;" class="addDancerButton" data-dancer-maker-function-name="FallingRock">Start the Meteors!</a>
     </div>
     <script src="src/init.js"></script>
   </body>
