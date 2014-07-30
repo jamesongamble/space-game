@@ -1,5 +1,24 @@
 $(document).ready(function(){
   $('.last_score').append(localStorage["score"]);
+  window.velocity;
+  window.move = function() {
+    if (player.posX + 70 > width + gamespaceOffset && window.velocity === 1) {
+      player.$node.animate({left: gamespaceOffset}, 0, "linear");
+      player.posX = gamespaceOffset;
+    } else if (window.velocity === 1) {
+      player.$node.animate({left: player.posX + 5}, 1, "linear");
+      player.posX += 5;
+    } else if (player.posX - 5 <= gamespaceOffset && window.velocity === -1) {
+      player.$node.animate({left: gamespaceOffset + width - 50}, 1, "linear");
+      player.posX = gamespaceOffset + width - 51;
+    } else if (window.velocity === -1) {
+      player.$node.animate({left: player.posX - 5}, 1, "linear");
+      player.posX -= 5;
+    }
+  };
+
+  window.move = _.throttle(window.move, 20);
+
   window.score = 0;
   setInterval( function() {
     window.score += 1;
@@ -50,31 +69,30 @@ $(document).ready(function(){
     }
   }, 10);
 
-  $("body").keydown(function(e) {
-    if (e.keyCode == '39') { //right arrow
-      if (player.posX + 80 > width + gamespaceOffset) {
-        player.$node.animate({left: gamespaceOffset}, 0, "linear");
-        player.posX = gamespaceOffset;
-      } else {
-        player.$node.animate({left: player.posX + 30}, 1, "linear");
-        player.posX += 30;
-      }
-    } else if (e.keyCode == '37') { //left arrow
-      if (player.posX - 30 <= gamespaceOffset) {
-        player.$node.animate({left: gamespaceOffset + width - 50}, 1, "linear");
-        player.posX = gamespaceOffset + width - 51;
-      } else {
-        player.$node.animate({left: player.posX - 30}, 1, "linear");
-        player.posX -= 30;
-      }
-    }
-    else if (e.keyCode == '32') { //spacebar
+  $("body").keydown(function(event) {
+    if (event.keyCode == '39') { //right arrow
+      window.velocity = 1;
+      window.mover = setInterval(window.move, 20);
+    } else if (event.keyCode == '37') { //left arrow
+      window.velocity = -1;
+      window.mover = setInterval(window.move, 20);
+    } else if (event.keyCode == '32') { //spacebar
       player.fire(window.side);
       if (window.side === 'left') {
         window.side = 'right';
       } else {
         window.side = 'left';
       }
+    }
+  });
+
+  $('body').keyup(function(event) {
+    if (event.keyCode == '39') { //right arrow
+      window.velocity = 0;
+      clearInterval(window.mover);
+    } else if (event.keyCode == '37') { //left arrow
+      window.velocity = 0;
+      clearInterval(window.mover);
     }
   });
 
