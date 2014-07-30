@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  $('.last_score').append(localStorage["score"]);
   window.score = 0;
   setInterval( function() {
     window.score += 1;
@@ -25,6 +26,9 @@ $(document).ready(function(){
     if (lazer.attr('class') === 'lazer') {
       $('.spaceship').attr('src', 'src/boom.svg').fadeOut(200, function() {
         $(this).remove();
+        if (score > window.localStorage["score"]) {
+          localStorage["score"] = window.score; 
+        }
         location.reload();
       });
     }
@@ -65,14 +69,12 @@ $(document).ready(function(){
       }
     }
     else if (e.keyCode == '32') { //spacebar
-      console.log(window.side);
       player.fire(window.side);
       if (window.side === 'left') {
         window.side = 'right';
       } else {
         window.side = 'left';
       }
-      console.log(window.side);
     }
   });
 

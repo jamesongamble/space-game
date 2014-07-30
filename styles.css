@@ -26,9 +26,6 @@ body, a:link, a:visited, a:active{
   height:32px;
   background-color: #555;
 }
-.title{
-
-}
 .missile{
   height: 35px;
   position:absolute;
@@ -51,4 +48,9 @@ body, a:link, a:visited, a:active{
 .lazer{
   height: 20px;
   position:absolute;
+}
+.last_score{
+  top: 500px;
+  left: 20px;
+  position: absolute;
 }
