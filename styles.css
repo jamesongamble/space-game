@@ -50,7 +50,5 @@ body, a:link, a:visited, a:active{
   position:absolute;
 }
 .last_score{
-  top: 500px;
-  left: 20px;
-  position: absolute;
+  top: 1000px;
 }
