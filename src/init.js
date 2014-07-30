@@ -32,12 +32,8 @@ $(document).ready(function(){
     var boom = $(".lazer").collision(".missile");
     var bigBoom = $(".missile").collision(".lazer");
     if (boom.attr('class') === 'missile') {
-      bigBoom.attr('src', 'src/boom.svg').fadeOut(200, function() {
-        $(this).remove();
-      });
-      boom.attr('src', 'src/boom.svg').fadeOut(200, function() {
-        $(this).remove();
-      });
+      bigBoom.remove();
+      boom.remove();
     }
       
 
