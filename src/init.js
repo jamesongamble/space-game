@@ -1,6 +1,19 @@
 $(document).ready(function(){
   $('.last_score').append(localStorage["score"]);
+
   window.velocity;
+  window.side;
+  window.shoot;
+  window.shooter = function() {
+    if (window.side === 'left') {
+      window.side = 'right';
+    } else {
+      window.side = 'left';
+    }
+    player.fire(window.side);
+  }
+  window.shooter = _.throttle(window.shooter, 100);
+  
   window.move = function() {
     if (player.posX + 70 > width + gamespaceOffset && window.velocity === 1) {
       player.$node.animate({left: gamespaceOffset}, 0, "linear");
@@ -22,7 +35,6 @@ $(document).ready(function(){
   window.score = 0;
   setInterval( function() {
     window.score += 1;
-    window.side;
     $('.score').text(window.score);
   }, 1);
 
@@ -76,13 +88,8 @@ $(document).ready(function(){
     } else if (event.keyCode == '37') { //left arrow
       window.velocity = -1;
       window.mover = setInterval(window.move, 20);
-    } else if (event.keyCode == '32') { //spacebar
-      player.fire(window.side);
-      if (window.side === 'left') {
-        window.side = 'right';
-      } else {
-        window.side = 'left';
-      }
+    } else if (event.keyCode == '32') {
+      window.shooter();
     }
   });
 
