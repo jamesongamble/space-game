@@ -1,0 +1,49 @@
+body, html{
+  height: 832px;
+  width: 1357px;
+}
+body{
+  margin: 0px;
+  background: url('src/space-lols.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-size: 18px;
+}
+body, a:link, a:visited, a:active{
+  color: lightBlue;
+}
+.title, .addDancerButton{
+  padding:5px 12px;
+  float:right;
+}
+.topbar{
+  height:32px;
+  background-color: #555;
+}
+.title{
+  background-color: #777;
+}
+.missile{
+  border: 2px solid red;
+  height: 25px;
+  position:absolute;
+}
+.spaceship{
+  border: 2px solid red;
+  width: 50px;
+  border-radius:10px;
+  position:absolute;
+}
+.invader{
+  border: 2px solid blue;
+  width: 30px;
+  position:absolute;
+}
+.score{
+  position: absolute;
+  font-size: 24px;
+  color: yellow;
+  left: 50%;
+}
