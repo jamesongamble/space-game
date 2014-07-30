@@ -18,8 +18,16 @@ $(document).ready(function(){
         $(this).remove();
         location.reload();
       });
-
     }
+
+    var lazer = $(".spaceship").collision( ".lazer" );
+    if (lazer.attr('class') === 'lazer') {
+      $('.spaceship').attr('src', 'src/boom.svg').fadeOut(200, function() {
+        $(this).remove();
+        location.reload();
+      });
+    }
+
     var missile = $(".invader").collision(".missile");
     var alien = $(".missile").collision(".invader");
     if (missile.attr('class') === 'missile') {
@@ -28,7 +36,7 @@ $(document).ready(function(){
       missile.remove();
     }
   }, 10);
-  
+
   $("body").keydown(function(e) {
     if (e.keyCode == '39') { //right arrow
       if (player.posX + 80 > width + gamespaceOffset) {
@@ -53,7 +61,6 @@ $(document).ready(function(){
   });
 
   setInterval(function(){
-
     var alien = new SpaceInvader(90, Math.abs(Math.random() *  width - 25) + gamespaceOffset);
     $('body').append(alien.$node);
   }, 250);

@@ -7,7 +7,7 @@ Missile.prototype = Object.create(Sprite.prototype);
 Missile.prototype.constructor = Missile;
 
 Missile.prototype.launch = function(){
-  this.$node.animate({top: 0}, 1200, "linear", function() {
+  this.$node.animate({top: 90}, 1200, "linear", function() {
     $(this).remove();
   });
 };

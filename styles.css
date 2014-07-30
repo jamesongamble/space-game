@@ -48,3 +48,7 @@ body, a:link, a:visited, a:active{
   color: yellow;
   left: 50%;
 }
+.lazer{
+  height: 20px;
+  position:absolute;
+}
