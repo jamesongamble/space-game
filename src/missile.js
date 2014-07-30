@@ -7,10 +7,6 @@ Missile.prototype = Object.create(Sprite.prototype);
 Missile.prototype.constructor = Missile;
 
 Missile.prototype.launch = function(){
-  if (this.posY <= 0) {
-    this.$node.attr('src', 'src/boom.svg');
-    this.$node.remove();
-  }
   this.$node.animate({top: 0}, 1200, "linear", function() {
     $(this).remove();
   });

@@ -1,5 +1,5 @@
 var SpaceShip = function(top, left){
-  this.$node = $('<img class="spaceship" src="src/image.png"></img>');
+  this.$node = $('<img class="spaceship" src="src/ship.png"></img>');
   this.posX = left;
   Sprite.call(this, top, left, 0);
 };  

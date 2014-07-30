@@ -1,8 +1,11 @@
 body, html{
-  height: 832px;
-  width: 1357px;
+  text-align: center;
+  background-color: #000;
 }
-body{
+.gamespace{
+  border: 2px solid blue;
+  height: 700px;
+  width: 900px;
   margin: 0px;
   background: url('src/space-lols.png') no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -14,7 +17,8 @@ body{
 body, a:link, a:visited, a:active{
   color: lightBlue;
 }
-.title, .addDancerButton{
+.title{
+  background-color: #777;
   padding:5px 12px;
   float:right;
 }
@@ -23,21 +27,18 @@ body, a:link, a:visited, a:active{
   background-color: #555;
 }
 .title{
-  background-color: #777;
+
 }
 .missile{
-  border: 2px solid red;
-  height: 25px;
+  height: 35px;
   position:absolute;
 }
 .spaceship{
-  border: 2px solid red;
   width: 50px;
   border-radius:10px;
   position:absolute;
 }
 .invader{
-  border: 2px solid blue;
   width: 30px;
   position:absolute;
 }
