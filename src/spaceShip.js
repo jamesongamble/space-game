@@ -1,15 +1,13 @@
-var SpaceShip = function(top, left, timeBetweenSteps){
-  Dancer.call(this, $('body').height() * .8, $('body').width() * .5, 0);
-  this.$node.attr('class', 'spaceship');
-  this.$node.attr('src', 'src/image.jpeg');
-};
+var SpaceShip = function(top, left){
+  this.$node = $('<img class="spaceship" src="src/image.png"></img>');
+  this.posX = left;
+  Sprite.call(this, top, left, 0);
+};  
 
-SpaceShip.prototype = Object.create(Dancer.prototype);
+SpaceShip.prototype = Object.create(Sprite.prototype);
 SpaceShip.prototype.constructor = SpaceShip;
 
-SpaceShip.prototype.step = function(){  
-  Dancer.prototype.step.call(this);
-  this.$node.on("mouseover", function(event) {
-    
-  });
-};
+SpaceShip.prototype.fire = function(side) {
+  var missile = new Missile (this.posY, this.posX + 21);
+  $('body').append(missile.$node);
+}

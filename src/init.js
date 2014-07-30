@@ -1,74 +1,63 @@
 $(document).ready(function(){
-  window.dancers = [];
+  window.score = 0;
+  setInterval( function() {
+    window.score += 1;
+    $('.score').text(window.score);
+  }, 1);
+  var width = $('body').width()
+  var player = new SpaceShip($('body').height() * .9, $('body').width() * .5);
+  $("body").append(player.$node);
 
-  $(".lineUpButton").on("click", function(event) {
-    $("img").each(function() {
-      var y = Math.random() * $("body").height();
-      $(this).css({top: y, left: 0});
-    });
+  setInterval(function() {
+    var breakable = $(".spaceship").collision( ".invader" );
+    if (breakable.attr('class') === 'invader') {
+      $('.spaceship').attr('src', 'src/boom.svg').fadeOut(200, function() {
+        $(this).remove();
+        location.reload();
+      });
+
+    }
+    var missile = $(".invader").collision(".missile");
+    var alien = $(".missile").collision(".invader");
+    if (missile.attr('class') === 'missile') {
+      window.score += 500;
+      alien.remove();
+      missile.remove();
+    }
+  }, 10);
+  $("span").on("click", function() {
+    location.reload();
   });
-
-  $("#go").on("click", function(event) {
-    setTimeout(function() {
-      $("#go").trigger("click");
-    }, 100);
-  });
-
   $("body").keydown(function(e) {
-    var offset = 100;
-    if (e.keyCode === '39') {
-      var pos = $(".spaceship").position();
-      if (pos.left + offset <= $('body').width()) {
-        $(".spaceship").animate({left: pos.left + offset}, 50, "linear");
+    if (e.keyCode == '39') { //right arrow
+      if (player.posX + 30 > $('body').width) {
+        var offset = $('body').width() - 50 - player.posX;
+        player.$node.animate({left: player.posX + offset}, 1, "linear");
+        player.posX += offset;
+      } else {
+        player.$node.animate({left: player.posX + 30}, 1, "linear");
+        player.posX += 30;
       }
-    } else if (e.keyCode === '37') {
-      var pos = $(".spaceship").position();
-      if (pos.left + offset > 0) {
-        $(".spaceship").animate({left: pos.left - offset}, 50, "linear");
+    } else if (e.keyCode == '37') { //left arrow
+      if (player.posX - 30 <= 25) {
+        var offset = player.posX - 25;
+        player.$node.animate({left: player.posX - offset}, 1, "linear");
+        player.posX -= offset;
+      } else {
+        player.$node.animate({left: player.posX - 30}, 1, "linear");
+        player.posX -= 30;
       }
-    } else if (e.keyCode === '32') {
-      var posX = $(".spaceship").position().left + 25;
-      var posY = $(".spaceship").position().top;
-      var missile = new Star(posY, posX, 1);
-      setInterval(function() {
-        var breakable = $(".spaceship").collision( ".meteor" );
-        if (breakable.attr('class') === 'meteor') {
-          $('.missile').attr('src', 'src/boom.svg').fadeOut(200, function() {
-            $(this).remove();
-          });
-        } 
-      }, 1);
+    }
+    else if (e.keyCode == '32') { //spacebar
+      player.fire();
     }
   });
 
-  $(".addDancerButton").on("click", function(event){
-    var dancerMakerFunctionName = $(this).data("dancer-maker-function-name");
+  setInterval(function(){
+    var alien = new SpaceInvader(32, Math.random() *  width - 50);
+    $('body').append(alien.$node);
+  }, 250);
 
-    var dancerMakerFunction = window[dancerMakerFunctionName];
-
-    var dancer = new dancerMakerFunction(
-      $("body").height() * Math.random(),
-      $("body").width() * Math.random(),
-      Math.random() * 1000
-    );
-    $('body').append(dancer.$node);
-
-    if(dancerMakerFunctionName === "SpaceShip") {
-      setInterval(function() {
-        var breakable = $(".spaceship").collision( ".meteor" );
-        if (breakable.attr('class') === 'meteor') {
-          $('.spaceship').attr('src', 'src/boom.svg').fadeOut(200, function() {
-            $(this).remove();
-          });
-          location.reload();
-        } 
-      }, 1);
-    }
-
-  });
-
-  $('#no').click();
-  //$('#go').click();
 
 });
 
