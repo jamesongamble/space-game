@@ -2,6 +2,7 @@ $(document).ready(function(){
   window.score = 0;
   setInterval( function() {
     window.score += 1;
+    window.side;
     $('.score').text(window.score);
   }, 1);
 
@@ -68,7 +69,14 @@ $(document).ready(function(){
       }
     }
     else if (e.keyCode == '32') { //spacebar
-      player.fire();
+      console.log(window.side);
+      player.fire(window.side);
+      if (window.side === 'left') {
+        window.side = 'right';
+      } else {
+        window.side = 'left';
+      }
+      console.log(window.side);
     }
   });
 

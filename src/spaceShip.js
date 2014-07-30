@@ -8,6 +8,14 @@ SpaceShip.prototype = Object.create(Sprite.prototype);
 SpaceShip.prototype.constructor = SpaceShip;
 
 SpaceShip.prototype.fire = function(side) {
-  var missile = new Missile (this.posY, this.posX + 21);
+  console.log(side);
+  var offset;
+  if (side === 'left') { 
+    offset = 0;
+  }  
+  else {
+    offset = 43;
+  }
+  var missile = new Missile (this.posY, this.posX + offset);
   $('body').append(missile.$node);
 }
